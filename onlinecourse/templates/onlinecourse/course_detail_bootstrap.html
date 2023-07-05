@@ -54,8 +54,9 @@
                         <div class="collapse" id="{{lesson.title}}">
                             <div class="card card-body">
 
-                                <form id="questionform" action="point to a submit view" method="post">
-                                    {% for question in lesson.question_set.all %}
+                                <form id="questionform" action="{% url 'onlinecourse:submit' course.id %}" method="post">
+
+                                    {% for question in course.question_set.all %}
                                     <div class="card mt-1">
                                         <div class="card-header"><h5>{{ question.question_text}}</h5></div>
                                         {% csrf_token %}

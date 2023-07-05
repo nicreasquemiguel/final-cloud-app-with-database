@@ -103,8 +103,8 @@ class Enrollment(models.Model):
     # Other fields and methods you would like to design
 class Question(models.Model):
     # Foreign key to lesson
-    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
-    # question text
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    # question text2
     question_text = models.CharField(max_length=256)
     # question grade/mark
     grade = models.IntegerField()
@@ -113,7 +113,8 @@ class Question(models.Model):
     def is_get_score(self, selected_ids):
         all_answers = self.choice_set.filter(is_correct=True).count()
         selected_correct = self.choice_set.filter(is_correct=True, id__in=selected_ids).count()
-        if all_answers == selected_correct:
+        selected_wrong = self.choice_set.filter(is_correct=False, id__in=selected_ids).count()
+        if all_answers == selected_correct and selected_wrong == 0:
             return True
         else:
             return False

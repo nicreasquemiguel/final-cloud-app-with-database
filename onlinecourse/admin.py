@@ -33,7 +33,6 @@ class CourseAdmin(admin.ModelAdmin):
 
 
 class LessonAdmin(admin.ModelAdmin):
-    inlines = [QuestionInline]
     list_display = ['title']
 
 
@@ -46,3 +45,4 @@ admin.site.register(Course, CourseAdmin)
 admin.site.register(Lesson, LessonAdmin)
 admin.site.register(Instructor)
 admin.site.register(Learner)
+admin.site.register(Submission)
